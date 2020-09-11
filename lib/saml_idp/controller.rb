@@ -65,6 +65,7 @@ module SamlIdp
       session_expiry = opts[:session_expiry]
       encryption_opts = opts[:encryption] || nil
       signed_message_opts = opts[:signed_message] || false
+      signed_assertion_opts = opts[:signed_assertion] || true
 
       SamlResponse.new(
         reference_id,
@@ -79,7 +80,8 @@ module SamlIdp
         expiry,
         encryption_opts,
         session_expiry,
-        signed_message_opts
+        signed_message_opts,
+        signed_assertion_opts
       ).build
     end
 
