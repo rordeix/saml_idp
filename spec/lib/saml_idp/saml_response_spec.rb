@@ -148,6 +148,7 @@ module SamlIdp
             "//p:Response//Assertion//ds:Signature",
             {
               "p" => "urn:oasis:names:tc:SAML:2.0:protocol",
+              "a" => "urn:oasis:names:tc:SAML:2.0:assertion",
               "ds" => "http://www.w3.org/2000/09/xmldsig#"
             }
           )).to_not be_present
