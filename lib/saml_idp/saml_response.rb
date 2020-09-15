@@ -16,6 +16,8 @@ module SamlIdp
     attr_accessor :expiry
     attr_accessor :encryption_opts
     attr_accessor :session_expiry
+    attr_accessor :name_id_formats_opts
+    attr_accessor :asserted_attributes_opts
     attr_accessor :signed_message_opts
     attr_accessor :signed_assertion_opts
 
@@ -31,6 +33,8 @@ module SamlIdp
           expiry=60*60,
           encryption_opts=nil,
           session_expiry=0,
+          name_id_formats_opts = nil,
+          asserted_attributes_opts = nil,
           signed_message_opts=false,
           signed_assertion_opts=true
           )
@@ -50,6 +54,8 @@ module SamlIdp
       self.session_expiry = session_expiry
       self.signed_message_opts = signed_message_opts
       self.signed_assertion_opts = signed_assertion_opts
+      self.name_id_formats_opts = name_id_formats_opts
+      self.asserted_attributes_opts = asserted_attributes_opts
     end
 
     def build
@@ -92,7 +98,9 @@ module SamlIdp
         authn_context_classref,
         expiry,
         encryption_opts,
-        session_expiry
+        session_expiry,
+        name_id_formats_opts,
+        asserted_attributes_opts
     end
     private :assertion_builder
   end
