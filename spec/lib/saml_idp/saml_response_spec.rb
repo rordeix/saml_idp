@@ -26,7 +26,7 @@ module SamlIdp
     end
     let(:signed_response_opts) { true }
     let(:unsigned_response_opts) { false }
-    let(:signed_assertion_opts) { true }
+    let(:non_signed_assertion_opts) { false }
     let(:subject_encrypted) { described_class.new(reference_id,
                                   response_id,
                                   issuer_uri,
@@ -40,7 +40,7 @@ module SamlIdp
                                   encryption_opts,
                                   session_expiry,
                                   unsigned_response_opts,
-                                  signed_assertion_opts
+                                  non_signed_assertion_opts
                                  )
     }
 
@@ -57,7 +57,7 @@ module SamlIdp
                                   nil,
                                   session_expiry,
                                   signed_response_opts,
-                                  signed_assertion_opts
+                                  non_signed_assertion_opts
                                  )
     }
 
@@ -110,7 +110,7 @@ module SamlIdp
         expect(saml_resp.is_valid?).to eq(true)
       end
 
-      context "when signed_assertion_opts is true" do
+      context "non when signed_assertion_opts is false" do
         it "builds a signed assertion" do
           expect { subject.build }.not_to raise_error
           signed_encoded_xml = subject.build
@@ -127,8 +127,8 @@ module SamlIdp
         end
       end
 
-      context "when signed_assertion_opts is false" do
-        let(:signed_assertion_opts) { false }
+      context "when non signed_assertion_opts is true" do
+        let(:non_signed_assertion_opts) { true }
 
         it "builds a raw assertion" do
           expect { subject.build }.not_to raise_error

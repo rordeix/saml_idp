@@ -17,7 +17,7 @@ module SamlIdp
     attr_accessor :encryption_opts
     attr_accessor :session_expiry
     attr_accessor :signed_message_opts
-    attr_accessor :signed_assertion_opts
+    attr_accessor :non_signed_assertion_opts
 
     def initialize(reference_id,
           response_id,
@@ -32,7 +32,7 @@ module SamlIdp
           encryption_opts=nil,
           session_expiry=0,
           signed_message_opts=false,
-          signed_assertion_opts=true
+          non_signed_assertion_opts=false
           )
       self.reference_id = reference_id
       self.response_id = response_id
@@ -49,7 +49,7 @@ module SamlIdp
       self.encryption_opts = encryption_opts
       self.session_expiry = session_expiry
       self.signed_message_opts = signed_message_opts
-      self.signed_assertion_opts = signed_assertion_opts
+      self.non_signed_assertion_opts = non_signed_assertion_opts
     end
 
     def build
@@ -59,10 +59,10 @@ module SamlIdp
     def signed_assertion
       if encryption_opts
         assertion_builder.encrypt(sign: true)
-      elsif signed_assertion_opts
-        assertion_builder.signed
-      else
+      elsif non_signed_assertion_opts
         assertion_builder.raw
+      else
+        assertion_builder.signed
       end
     end
     private :signed_assertion

@@ -119,7 +119,7 @@ CERT
   # config.single_service_post_location = "#{base}/saml/auth"
   # config.session_expiry = 86400                                 # Default: 0 which means never
   # config.signed_message = true                                  # Default: false which means unsigned SAML Response
-  # config.signed_assertion = false                               # Default: true which means signed  assertions on the SAML Response
+  # config.non_signed_assertion = true                            # Default: false which means signed  assertions on the SAML Response
 
   # Principal (e.g. User) is passed in when you `encode_response`
   #
